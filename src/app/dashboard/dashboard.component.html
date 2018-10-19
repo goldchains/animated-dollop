@@ -1,0 +1,71 @@
+<div class="row">
+  <div class="col-xs-12 col-md-6 col-sm-12 col-lg-3">
+    <statsCard [data]="card1"></statsCard>
+  </div>
+  <div class="col-xs-12 col-md-6 col-lg-3">
+    <statsCard [data]="card2"></statsCard>
+  </div>
+  <div class="col-xs-12 col-md-6 col-lg-3">
+    <form action="/action_page.php">
+      BCO <br>
+      Test 1 <input type="text" name="BCOTest1" value=""><br><br>
+      Test 2 <input type="text" name="BCOTest1" value="">
+      <input type="submit" value="Predict">
+      </form>
+  </div>
+  <div class="col-xs-12 col-md-6 col-lg-3">
+    <form action="/action_page.php">
+      IAP <br>
+      Test 1 <input type="text" name="IAPTest1" value=""><br><br>
+      Test 2 <input type="text" name="IAPTest1" value="">
+      <input type="submit" value="Predict">
+     
+      </form>
+  </div>
+</div><!--/.row-->
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">Historical Pass Rates</div>
+      <div class="panel-body">
+        <div class="canvas-wrapper" >
+          <canvas baseChart style="min-height: 300px;width: 100%; height: 50vh"
+                  [options]="ChartOptions"
+                  [datasets]="lineChartData"
+                  [labels]="lineChartLabels"
+                  [chartType]="lineChartType"
+                  (chartHover)="chartHovered($event)"
+                  (chartClick)="chartClicked($event)"
+          ></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!--/.row-->
+
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="panel panel-default ">
+      <div class="panel-heading">
+        Results Using Test 1
+      </div>
+
+      <div class="panel-body timeline-container">
+       
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="panel panel-default articles">
+      <div class="panel-heading">
+        Results Using Test  1 and 2
+      </div>
+      <div class="panel-body articles-container">
+     
+      </div>
+    </div><!--End .articles-->
+  </div>
+</div>
+
