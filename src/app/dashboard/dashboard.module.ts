@@ -10,6 +10,7 @@ import { ChartsModule } from 'ng2-charts';
 
 import {CommonModule} from "@angular/common";
 import {Ng2Timeline} from 'ng2-timeline';
+import { PredictorService } from '../services/predictor/predictor.service';
 
 
 
@@ -26,6 +27,6 @@ import {Ng2Timeline} from 'ng2-timeline';
  
   ],
   declarations: [ DashboardComponent, StatsCardComponent],
-  providers: [ DashboardService ]
+  providers: [ DashboardService, PredictorService ]
 })
 export class DashboardModule { }

@@ -1,6 +1,9 @@
 
 import {Component, OnInit} from '@angular/core';
+import { FormGroup, FormBuilder, Validators} from '@angular/forms'
 import {StatsCard} from "../components/statsCard/statsCard";
+import { PredictorService } from '../services/predictor/predictor.service';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -10,6 +13,16 @@ import {StatsCard} from "../components/statsCard/statsCard";
 })
 export class DashboardComponent implements OnInit{
 
+  predictorForm: FormGroup;
+  private prediction : Observable<Object>;
+
+  constructor(private predictorService: PredictorService, private fb: FormBuilder) { 
+    this.predictorForm = this.fb.group({
+      test1: ['', Validators.required],
+      test2: '',
+      course: ['', Validators.required]
+    })
+  }
 
   public chartHeight=35;
 
@@ -76,8 +89,25 @@ export class DashboardComponent implements OnInit{
     console.log(e);
   }
   
-  public doPredict(values){
-  
+  public doPredict(course, test1, test2){
+    if(test1 == ''){
+
+    }else if(test1 != '' && test2 == ''){
+      this.prediction = this.predictorService
+      .getPredictionTest1(course, test1)
+      // .subscribe((data) => {
+      //   console.log("Data requested...")
+      //   console.log(data)
+      // })
+    } else if(test1 != '' && test2 != ''){
+      this.prediction = this.predictorService
+      .getPredictionTest2(course, test1, test2)
+      // .subscribe((res: any []) => {
+      //   console.log("Data requested...")
+      //   console.log(res)
+      //   this.prediction = res
+      // })
+    }
   }
 
 

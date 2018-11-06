@@ -6,14 +6,26 @@
     <statsCard [data]="card2"></statsCard>
   </div>
   <div class="col-xs-12 col-md-6 col-lg-3">
-    <form action="/action_page.php">
-      BCO <br>
-      Test 1 <input type="text" name="BCOTest1" value=""><br><br>
-      Test 2 <input type="text" name="BCOTest1" value="">
-      <input type="submit" value="Predict">
+      <form [formGroup]="predictorForm">
+        <div class="form-group">
+          <label for="sel1">Select list:</label>
+        <select class="form-control" id="sel1" formControlName="course" #course>
+            <option>BCO</option>
+            <option>IAP</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="test1">Test 1</label>
+          <input type="number" class="form-control" id="test1" aria-describedby="emailHelp" placeholder="Enter Test 1 Mark" formControlName="test1" #test1>
+        </div>
+        <div class="form-group">
+          <label for="test2">Test 2</label>
+          <input type="number" class="form-control" id="test2" placeholder="Enter Test 2 Mark (Optional)" formControlName="test2" #test2>
+        </div>
+        <button type="submit" (click)="doPredict(course.value, test1.value, test2.value)" [disabled]="predictorForm.prestine || predictorForm.invalid" class="btn btn-primary">Submit</button>
       </form>
   </div>
-  <div class="col-xs-12 col-md-6 col-lg-3">
+  <!-- <div class="col-xs-12 col-md-6 col-lg-3">
     <form action="/action_page.php">
       IAP <br>
       Test 1 <input type="text" name="IAPTest1" value=""><br><br>
@@ -21,7 +33,7 @@
       <input type="submit" value="Predict">
      
       </form>
-  </div>
+  </div> -->
 </div><!--/.row-->
 
 <div class="row">
@@ -46,26 +58,19 @@
 
 
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-12">
     <div class="panel panel-default ">
       <div class="panel-heading">
-        Results Using Test 1
+        Predicted results
       </div>
-
+      <li *ngFor="let predicted of prediction | async">
+        <H2>{{predicted}}</H2>
+      </li>
       <div class="panel-body timeline-container">
        
       </div>
     </div>
   </div>
-  <div class="col-md-6">
-    <div class="panel panel-default articles">
-      <div class="panel-heading">
-        Results Using Test  1 and 2
-      </div>
-      <div class="panel-body articles-container">
-     
-      </div>
-    </div><!--End .articles-->
-  </div>
+  
 </div>
 

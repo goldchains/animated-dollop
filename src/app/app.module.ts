@@ -9,6 +9,8 @@ import { AppComponent } from './app.component';
 // Routing Module
 import { FullLayoutComponent} from './layout/full-layout.component';
 import {Ng2AutoBreadCrumb} from "ng2-auto-breadcrumb";
+import { PredictorService } from './services/predictor/predictor.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -46,16 +48,18 @@ export const routes: Routes = [
     BrowserModule,
     RouterModule.forRoot(routes),
     CommonModule,
-    Ng2AutoBreadCrumb
+    Ng2AutoBreadCrumb,
+    HttpClientModule
   ],
   declarations: [
     FullLayoutComponent,
     AppComponent
+    
   ],
   providers: [{
     provide: LocationStrategy,
     useClass: HashLocationStrategy
-  }],
+  }, PredictorService],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
